@@ -64,7 +64,13 @@ const swaggerOptions = {
   apis: ["./routes/*.js"],
 };
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
-app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+const CSS_URL =
+  "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+app.use(
+  "/api-docs",
+  swaggerUI.serve,
+  swaggerUI.setup(swaggerDocs, { customCssUrl: CSS_URL })
+);
 
 // Handle unhandled promise rejections
 process.on("unhandledRejection", (err, promise) => {
